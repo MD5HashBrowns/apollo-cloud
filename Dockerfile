@@ -8,6 +8,8 @@ FROM debian:latest
 # Original author is Carlos Tighe
 MAINTAINER MD5HashBrowns
 
+#Enable Jessie backports
+RUN echo 'deb http://ftp.debian.org/debian jessie-backports main' >> /etc/apt/sources.list
 # Install packages
 RUN apt-get update && apt-get install -y apache2 \
     libapache2-mod-wsgi \
@@ -20,6 +22,8 @@ RUN apt-get update && apt-get install -y apache2 \
  && apt-get clean \
  && apt-get autoremove \
  && rm -rf /var/lib/apt/lists/*
+ 
+RUN apt-get install python-certbot-apache -t jessie-backports
 
 # Copy over and install the requirements
 COPY ./app/requirements.txt /var/www/apollo-cloud/app/requirements.txt
@@ -40,6 +44,8 @@ COPY ./app /var/www/apollo-cloud/app/
 RUN a2dissite 000-default.conf
 RUN a2ensite apollo-cloud.conf
 
+# Let's Encrypt CertBot
+certbot --apache
 
 # Set permissions for the static directory
 RUN chmod -R 777 /var/www/apollo-cloud/app/static/  

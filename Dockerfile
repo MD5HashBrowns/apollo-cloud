@@ -24,6 +24,7 @@ RUN apt-get update && apt-get install -y apache2 \
 # Copy over and install the requirements
 COPY ./app/requirements.txt /var/www/apollo-cloud/app/requirements.txt
 RUN pip install -r /var/www/apollo-cloud/app/requirements.txt
+RUN pip install -U youtube-dl
 
 # Copy over the apache configuration file and enable the site
 COPY ./apollo-cloud.conf /etc/apache2/sites-available/apollo-cloud.conf

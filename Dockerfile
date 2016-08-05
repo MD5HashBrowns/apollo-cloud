@@ -22,9 +22,12 @@ RUN apt-get update && apt-get install -y apache2 \
  && apt-get clean \
  && apt-get autoremove \
  && rm -rf /var/lib/apt/lists/*
- 
-RUN apt-get install python-certbot-apache -t jessie-backports
 
+RUN apt-get update && apt-get install -y python-certbot-apache -t jessie-backports \
+ && apt-get clean \
+ && apt-get autoremove \
+ && rm -rf /var/lib/apt/lists/*
+ 
 # Copy over and install the requirements
 COPY ./app/requirements.txt /var/www/apollo-cloud/app/requirements.txt
 RUN pip install -r /var/www/apollo-cloud/app/requirements.txt

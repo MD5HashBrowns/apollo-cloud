@@ -45,7 +45,7 @@ RUN a2dissite 000-default.conf
 RUN a2ensite apollo-cloud.conf
 
 # Let's Encrypt CertBot
-certbot --apache
+RUN certbot --apache
 
 # Set permissions for the static directory
 RUN chmod -R 777 /var/www/apollo-cloud/app/static/  

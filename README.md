@@ -5,5 +5,5 @@ Apollo Cloud is a Python Flask powered MP3 downloader webapp, built off of [Crai
 
 ### How to run Apollo Cloud
 To run Apollo Cloud, use the following command:
-```docker run --name <name> md5hashbrowns/apollo-cloud```
+```docker run -p 80:80 --name <name> md5hashbrowns/apollo-cloud```
 The IP of the container will be displayed, visit it to use Apollo Cloud

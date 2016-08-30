@@ -29,6 +29,7 @@ def about():
     return render_template('about.html')
     
 @app.route('/DMCA')
+def DMCA():
    return render_template('DMCA.html')
     
 
